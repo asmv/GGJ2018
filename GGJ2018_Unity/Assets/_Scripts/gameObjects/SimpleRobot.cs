@@ -8,7 +8,7 @@ public class SimpleRobot : PossessableEnemy {
 	public int INITHEALTH = 100;
 	public float INITPOWER = 10;
 	public int INITKAMIKAZEDAMAGE = 30;
-	public float INITBULLTEFIREDELAY = 0.5;
+	public float INITBULLTEFIREDELAY = 0.5f;
 
 	public override void enterPlayerControl(){
 		base.enterPlayerControl(); //call base class method of same name
