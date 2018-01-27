@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SimpleRobot : PossessableEnemy {
 
+	public float INITSPEED = 10;
+	public int INITHEALTH = 100;
+	public float INITPOWER = 10;
+	public int INITKAMIKAZEDAMAGE = 30;
+	public float INITBULLTEFIREDELAY = 0.5;
+
 	public override void enterPlayerControl(){
 		base.enterPlayerControl(); //call base class method of same name
 		//add additional behavior exclusive to this enemy here
@@ -24,7 +30,11 @@ public class SimpleRobot : PossessableEnemy {
 
 	// Use this for initialization
 	void Start () {
-		
+		speed = INITSPEED;
+		health = INITHEALTH;
+		power = INITPOWER;
+		kamikazeDamage = INITKAMIKAZEDAMAGE;
+		bulletFireDelay = INITBULLTEFIREDELAY;
 	}
 	
 	// Update is called once per frame
