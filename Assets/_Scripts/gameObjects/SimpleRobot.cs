@@ -18,8 +18,7 @@ public class SimpleRobot : PossessableEnemy {
 		throw new System.NotImplementedException ();
 	}
 
-	public override void destroyMe ()
-	{
+	public override void destroyMe (){
 		throw new System.NotImplementedException ();
 	}
 
