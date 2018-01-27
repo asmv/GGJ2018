@@ -24,6 +24,8 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		time = 0;
+		//testCode
+		StartCoroutine("spawnEveryTen");
 	}
 	
 	// Update is called once per frame
@@ -66,18 +68,37 @@ public class LevelManager : MonoBehaviour {
 		return ret;
 	}
 
-	public void spawnEnemy(List<Enemy> enemyArr, float minSeparationDistance){
+	IEnumerator spawnEveryTen(){
+		while(true){
+			List<ENEMYTYPE> elist = new List<ENEMYTYPE>{ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot};
+			spawnEnemy(instantiateFromEnumeration(elist));
+			yield return new WaitForSeconds(5);
+		}
+	}
+
+	public void spawnEnemy(List<Enemy> enemyArr){
 		float enemyAggregateWidth = 0;
 		float maxEnemyHeight = 0;
 		foreach(Enemy e in enemyArr){
-			enemies.Add(e.objectId, e);
+			//enemies.Add(e.objectId, e);
 			BoxCollider2D col = e.GetComponent<BoxCollider2D>();
 			enemyAggregateWidth += col.bounds.size.x;
 			float eHeight = col.bounds.size.y;
 			if(eHeight > maxEnemyHeight){
 				maxEnemyHeight = eHeight;
 			}
+
+			//Set enemy values here
+			//
+
+			
+			//
+
+			e.gameObject.SetActive(true);
 		}
+
+
+
 	}
 
 	public Enemy getClosestToLocation(Vector2 location){
