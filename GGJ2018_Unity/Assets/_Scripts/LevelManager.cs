@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour {
 	public Queue<KeyValuePair<float, string>> eventQueue;
 	public Dictionary<int, Enemy> enemies;
 
+	public GameObject player;
+
 	public SpawnZone SZ;
 
 	public Transform enemyPrefabRoot;
@@ -23,10 +25,18 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("Warning: If you see this debug message, make sure to maximize on play. OnBecomeInvisible(for bullets) will not work properly without it.");
 		time = 0;
         levelDuration = 10;
 		//testCode
 		StartCoroutine("spawnEveryTen");
+		GameObject InitialPlayerGO = Instantiate(enemyPrefabRoot.Find(ENEMYTYPE.simplerobot.ToString()).gameObject);
+		InitialPlayerGO.SetActive(true);
+		PossessableEnemy pEnemy = InitialPlayerGO.GetComponent<PossessableEnemy>();
+		pEnemy.placeAtCoordinates(Vector2.zero);
+		player.transform.SetParent(InitialPlayerGO.transform);
+		Player playerScript = player.gameObject.GetComponent<Player>();
+		playerScript.setControlledEnemy(pEnemy);
 	}
 	
 	// Update is called once per frame
@@ -48,7 +58,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void levelWin(){
-        Debug.Log("win");
+        Debug.Log("LEVELWIN");
 	}
 
 	public void levelFail(){
@@ -91,7 +101,7 @@ public class LevelManager : MonoBehaviour {
 
 			//Set enemy values here
 			//
-
+			e.placeAtCoordinates(new Vector2 (Random.Range(-9f, 9f), 5f));
 			//
 
 			e.gameObject.SetActive(true);

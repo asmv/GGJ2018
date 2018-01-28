@@ -6,6 +6,11 @@ public class Player : MonoBehaviour {
 
 	PossessableEnemy controlledEnemy;
 
+	public int playerHealth;
+	public int playerTransmissionJuice;
+
+	private float playerControlledSpeedMultiplier = 3;
+
 	public float transmissionDelay {get; protected set;}
 	public bool isTransmitting {get; protected set;}
 
@@ -14,8 +19,21 @@ public class Player : MonoBehaviour {
 			controlledEnemy.leavePlayerControl();
 		}
 		this.controlledEnemy = e;
+		e.speed=e.speed*playerControlledSpeedMultiplier;
+		Debug.Log(playerControlledSpeedMultiplier);
 		e.enterPlayerControl();
-		this.transform.SetParent(controlledEnemy.transform); //test thoroughly
+		this.transform.SetParent(controlledEnemy.transform);
+		controlledEnemy.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.95f);
+	}
+
+	public void leaveControlledEnemy(){
+		controlledEnemy.leavePlayerControl();
+		controlledEnemy.speed/=playerControlledSpeedMultiplier;
+		controlledEnemy.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
+	}
+
+	void OnCollisionEnter(Collider collision){
+
 	}
 
 ///Just some code in case an int id is passed in, should not be required, and doesn't work yet anyway
@@ -40,7 +58,7 @@ public class Player : MonoBehaviour {
 		if(controlledEnemy!=null){
 			Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 			controlledEnemy.move(move);
-			if(Input.GetKeyDown(KeyCode.Z)){
+			if(Input.GetKey(KeyCode.Z)){
 				controlledEnemy.basicAttack();
 			}
 			if(Input.GetKeyDown(KeyCode.X)){
@@ -50,11 +68,12 @@ public class Player : MonoBehaviour {
 					Debug.Log("Warning, transmission is not yet implemented.");
 					PossessableEnemy e = null; //closest
 					if(e!=null){
-						controlledEnemy.leavePlayerControl();
+						leaveControlledEnemy();
 						setControlledEnemy(e);
 						e.transmitTo();
 						throw new System.NotImplementedException();
 					}
+					StartCoroutine("reloadTransmission");
 				}
 			}
 		}

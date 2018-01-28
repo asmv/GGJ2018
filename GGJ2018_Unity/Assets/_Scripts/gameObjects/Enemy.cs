@@ -6,7 +6,7 @@ public abstract class Enemy : MoveableObject {
 
 	public Transform bulletPrefabRoot;
 
-	public float speed {get; protected set;}
+	public float speed {get; set;}
 	public int health {get; protected set;}
 	public float power {get; protected set;}
 	public int kamikazeDamage {get; protected set;}

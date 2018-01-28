@@ -24,19 +24,27 @@ public abstract class PossessableEnemy : Enemy {
 	}
 
 	public virtual void basicAttack(){
+		Debug.Log("Basic Attack from Possessable Enemy");
 		if(this.isReloading == false){
 			this.isReloading = true;
 			GameObject BulletGO = Instantiate(bulletPrefabRoot.Find(BULLETTYPE.simplebullet.ToString()).gameObject);
+			Bullet b = BulletGO.GetComponent<Bullet>();
+			b.placeAtCoordinates(this.transform.localPosition);
 			if(this.isPlayerControlled){
+				b.isShotByPlayer = true;
+				b.setMovementDirection(Vector2.up);
 				//fire bullet up
 			}else{
+				b.isShotByPlayer = false;
+				b.setMovementDirection(Vector2.down);
 				//fire bullet down or toward player
 			}
-			reload();
+			StartCoroutine("reload");
 		}
 	}
 
 	IEnumerator reload(){
+		Debug.Log("In reload.");
 		yield return new WaitForSeconds(bulletFireDelay);
 		this.isReloading = false;
 	}

@@ -17,7 +17,15 @@ public class SimpleRobot : PossessableEnemy {
 
 	public override void leavePlayerControl(){
 		base.leavePlayerControl(); //call base class method of same name
+		StartCoroutine("doFirePattern");
 		//add additional behavior exclusive to this enemy here
+	}
+
+	IEnumerator doFirePattern(){
+		while(!this.isPlayerControlled){
+			this.basicAttack();
+			yield return new WaitForSeconds(this.bulletFireDelay);
+		}
 	}
 
 	public override void collideProjectile(){
@@ -28,20 +36,27 @@ public class SimpleRobot : PossessableEnemy {
 		throw new System.NotImplementedException ();
 	}
 
+	public override void move (Vector3 movementVector){
+		//If we want to add additional AI, we can do so here, first add a variable "TimeAlive" and use that as input to a function that changes position
+		base.move (movementVector);
+	}
+
 	// Use this for initialization
 	void Start () {
+		this.onStart();
 		speed = INITSPEED;
 		health = INITHEALTH;
 		power = INITPOWER;
 		kamikazeDamage = INITKAMIKAZEDAMAGE;
 		bulletFireDelay = INITBULLTEFIREDELAY;
-
-        this.placeAtCoordinates(new Vector2 (Random.Range(-9f, 9f), 5f));
+		StartCoroutine("doFirePattern");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.move(Vector3.down);
+		if(!this.isPlayerControlled){
+			this.move(Vector3.down);
+		}
         cullCheck();
 	}
 }

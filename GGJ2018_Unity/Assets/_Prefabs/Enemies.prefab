@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1919979534252598
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114375147000923912}
   m_Layer: 0
   m_Name: simplerobot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474476793141762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.079288006, y: -0.4036223, z: 0.12544918}
+  m_LocalPosition: {x: 0.079288006, y: 4.23, z: 0.12544918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4335554851033466}
@@ -135,7 +135,7 @@ MonoBehaviour:
   INITHEALTH: 100
   INITPOWER: 10
   INITKAMIKAZEDAMAGE: 30
-  INITBULLTEFIREDELAY: 0.5
+  INITBULLTEFIREDELAY: 2
 --- !u!212 &212334745338915406
 SpriteRenderer:
   m_ObjectHideFlags: 1

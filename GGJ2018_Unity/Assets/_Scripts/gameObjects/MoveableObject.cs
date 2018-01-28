@@ -10,16 +10,11 @@ public abstract class MoveableObject : MonoBehaviour {
 	public bool isOnscreen{get; protected set;}
 	public bool killWhenOffscreen{get; protected set;}
 
-	// Use this for initialization
-	void Start () {
+	public virtual void onStart () {
 		if(this.GetComponent<BoxCollider2D>() == null){
 			Debug.Log("Warning, object " + this.gameObject.name + " does not have a BoxCollider2D component.");
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		this.GetComponent<Rigidbody2D>().freezeRotation = true;
 	}
 
 	public void placeAtCoordinates(Vector2 coordinates){

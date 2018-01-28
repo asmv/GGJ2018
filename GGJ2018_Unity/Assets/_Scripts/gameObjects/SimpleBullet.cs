@@ -9,7 +9,7 @@ public class SimpleBullet : Bullet {
 	public int INITDAMAGE = 10;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		speed = INITSPEED;
 		acceleration = INITACCELERATION;
 		damage = INITDAMAGE;
