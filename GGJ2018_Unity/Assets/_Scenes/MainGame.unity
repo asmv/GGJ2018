@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   INITPLAYERHEALTH: 100
   INITPLAYERTRANSMISSIONJUICE: 100
+  LOSSONTRANSMIT: 5
   playerHealth: 0
   playerTransmissionJuice: 0
 --- !u!4 &30268561
@@ -229,6 +230,7 @@ GameObject:
   - component: {fileID: 259969579}
   - component: {fileID: 259969578}
   - component: {fileID: 259969577}
+  - component: {fileID: 259969580}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -271,6 +273,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259969580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259969576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe5d14144dc34f7c903c5c5cb2dce40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &629090066
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -332.2, y: 236.65}
-  m_SizeDelta: {x: 110.5, y: 36.2}
+  m_AnchoredPosition: {x: -311, y: 265}
+  m_SizeDelta: {x: 147.38, y: 36.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629090068
 MonoBehaviour:
@@ -326,7 +339,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f0f1c5acac0fe4d79aff8b3622d98924, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -377,8 +390,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -163.46, y: 269.75}
-  m_SizeDelta: {x: 55.08, y: 36.2}
+  m_AnchoredPosition: {x: 359, y: 267}
+  m_SizeDelta: {x: 63.83, y: 36.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649056008
 MonoBehaviour:
@@ -400,7 +413,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f0f1c5acac0fe4d79aff8b3622d98924, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -748,8 +761,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.1, y: 271.3}
-  m_SizeDelta: {x: 200.2, y: 33.1}
+  m_AnchoredPosition: {x: 181.88, y: 268.55}
+  m_SizeDelta: {x: 301.98, y: 33.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2067101047
 MonoBehaviour:
@@ -771,7 +784,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f0f1c5acac0fe4d79aff8b3622d98924, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -822,8 +835,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -249.41, y: 236.65002}
-  m_SizeDelta: {x: 55.08, y: 36.2}
+  m_AnchoredPosition: {x: -191.9255, y: 265}
+  m_SizeDelta: {x: 77.91, y: 36.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2109549621
 MonoBehaviour:
@@ -845,7 +858,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f0f1c5acac0fe4d79aff8b3622d98924, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
