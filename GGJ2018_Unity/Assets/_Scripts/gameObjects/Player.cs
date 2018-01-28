@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
 	public int INITPLAYERHEALTH = 100;
 	public int INITPLAYERTRANSMISSIONJUICE = 100;
+	public int LOSSONTRANSMIT = 5;
 
 	public int playerHealth;
 	public int playerTransmissionJuice;
@@ -73,16 +74,15 @@ public class Player : MonoBehaviour {
 				controlledEnemy.basicAttack();
 			}
 			if(Input.GetKeyDown(KeyCode.X)){
-				if(!isTransmitting){
+				if(!isTransmitting && playerTransmissionJuice > 0){
 					isTransmitting = true;
-					//TODO: Find enemy to transmit to
-					Debug.Log("Warning, transmission is not yet implemented.");
 					GameObject enemyObj = findClosest();
 					PossessableEnemy e = enemyObj.GetComponent<PossessableEnemy>();
 					if(e!=null){
 						leaveControlledEnemy();
 						setControlledEnemy(e);
 						e.transmitTo();
+						this.playerTransmissionJuice=Mathf.Max(0, playerTransmissionJuice-LOSSONTRANSMIT);
 					}else{
 						//nothing to transmit to
 						Debug.Log("Not Implemented Exception");

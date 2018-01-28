@@ -10,6 +10,8 @@ public class SimpleRobot : PossessableEnemy {
 	public int INITKAMIKAZEDAMAGE = 30;
 	public float INITBULLTEFIREDELAY = 0.5f;
 
+	public Sprite[] sprites;
+
 	public override void enterPlayerControl(){
 		base.enterPlayerControl(); //call base class method of same name
 		//add additional behavior exclusive to this enemy here
