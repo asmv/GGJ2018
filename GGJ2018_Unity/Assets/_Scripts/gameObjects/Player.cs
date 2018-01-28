@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 		e.enterPlayerControl();
 		this.transform.SetParent(controlledEnemy.transform);
 		controlledEnemy.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.95f);
+		playerHealth = e.health;
 	}
 
 	public void leaveControlledEnemy(){
@@ -36,6 +37,14 @@ public class Player : MonoBehaviour {
 		controlledEnemy.leavePlayerControl();
 		controlledEnemy.speed/=playerControlledSpeedMultiplier;
 		controlledEnemy.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
+	}
+
+	public void wasHit(){
+		if(playerHealth <= 0){
+			Debug.Log(GameObject.Find("Game").GetComponent<LevelManager>());
+			GameObject.Find("Game").GetComponent<LevelManager>().levelFail();
+			controlledEnemy.destroyMe();
+		}
 	}
 
 //	void OnCollisionEnter(Collision collision){
@@ -96,7 +105,6 @@ public class Player : MonoBehaviour {
 			pos.y = Mathf.Clamp01(pos.y);
 			controlledEnemy.transform.position = Camera.main.ViewportToWorldPoint(pos);
 		}
-		
 	}
 
 	private GameObject findClosest(){

@@ -64,7 +64,9 @@ public abstract class PossessableEnemy : Enemy {
 						GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
 						this.isInvincible = true;
 						StartCoroutine("invincibilityFrames");
+						PlayerGO.GetComponent<Player>().wasHit();
 					}
+
 				}
 				else if(collision.gameObject.tag == "Enemy"){
 					Debug.Log("PlayerHitByEnemy");
@@ -74,6 +76,7 @@ public abstract class PossessableEnemy : Enemy {
 					GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
 					this.isInvincible = true;
 					StartCoroutine("invincibilityFrames");
+					PlayerGO.GetComponent<Player>().wasHit();
 				}
 
 			}

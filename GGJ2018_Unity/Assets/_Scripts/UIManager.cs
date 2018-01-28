@@ -24,11 +24,15 @@ public class UIManager : MonoBehaviour {
     }
 
     void Start(){
-    	player = playerGO.GetComponent<Player>();
+		if(SceneManager.GetActiveScene().buildIndex == 1){
+    		player = playerGO.GetComponent<Player>();
+    	}
     }
 
     void Update(){
-    	updatePlayerValues();
+    	if(SceneManager.GetActiveScene().buildIndex == 1){
+    		updatePlayerValues();
+    	}
     }
 
     void updatePlayerValues(){

@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject player;
 
+	public GameObject gameOverButton;
+
 	public SpawnZone SZ;
 
 	public Transform enemyPrefabRoot;
@@ -37,6 +39,7 @@ public class LevelManager : MonoBehaviour {
 		player.transform.SetParent(InitialPlayerGO.transform);
 		Player playerScript = player.gameObject.GetComponent<Player>();
 		playerScript.setControlledEnemy(pEnemy);
+		playerScript.playerHealth = 100; //FIXME: Hardcoded value
 	}
 	
 	// Update is called once per frame
@@ -62,7 +65,9 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void levelFail(){
+		Debug.Log("Level Fail Called");
 
+		gameOverButton.gameObject.SetActive(true);
 	}
 
 	public List<Enemy> instantiateFromEnumeration(List<ENEMYTYPE> types){
