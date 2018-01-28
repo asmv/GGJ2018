@@ -62,18 +62,20 @@ public abstract class PossessableEnemy : Enemy {
 						Debug.Log("PlayerHitByBullet");
 						PlayerGO.GetComponent<Player>().playerHealth-=collision.gameObject.GetComponent<Projectile>().damage;
 						GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
+						this.isInvincible = true;
+						StartCoroutine("invincibilityFrames");
 					}
 				}
-				if(collision.gameObject.tag == "Enemy"){
+				else if(collision.gameObject.tag == "Enemy"){
 					Debug.Log("PlayerHitByEnemy");
 					Enemy hitEnemy = collision.gameObject.GetComponent<Enemy>();
 					PlayerGO.GetComponent<Player>().playerHealth-=hitEnemy.kamikazeDamage;
 					hitEnemy.collidePlayer();
 					GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
+					this.isInvincible = true;
+					StartCoroutine("invincibilityFrames");
 				}
-				Debug.Log("PlayerHealth: " + PlayerGO.GetComponent<Player>().playerHealth);
-				this.isInvincible = true;
-				StartCoroutine("invincibilityFrames");
+
 			}
 		}else{
 			if(collision.gameObject.tag == "Bullet" && collision.gameObject.GetComponent<Projectile>().isShotByPlayer){
