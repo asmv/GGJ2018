@@ -73,18 +73,36 @@ public class Player : MonoBehaviour {
 					isTransmitting = true;
 					//TODO: Find enemy to transmit to
 					Debug.Log("Warning, transmission is not yet implemented.");
-					PossessableEnemy e = null; //closest
+					GameObject enemyObj = findClosest();
+					PossessableEnemy e = enemyObj.GetComponent<PossessableEnemy>();
 					if(e!=null){
 						leaveControlledEnemy();
 						setControlledEnemy(e);
 						e.transmitTo();
-						throw new System.NotImplementedException();
+					}else{
+						//nothing to transmit to
+						Debug.Log("Not Implemented Exception");
 					}
 					StartCoroutine("reloadTransmission");
 				}
 			}
 		}
 		
+	}
+
+	private GameObject findClosest(){
+		var Gos = GameObject.FindGameObjectsWithTag("Enemy"); //FIXME: slight cheat, Enemy might not be possessable in future version
+		GameObject closest = null;
+		float distance = Mathf.Infinity;
+		var position = this.transform.position;
+		foreach(GameObject go in Gos){
+			var curDistance = Vector3.Distance(position, go.transform.position);
+			if(curDistance<distance){
+				closest = go;
+				distance = curDistance;
+			}
+		}
+		return closest;
 	}
 
 	IEnumerator reloadTransmission(){
