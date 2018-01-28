@@ -22,7 +22,7 @@ public abstract class MoveableObject : MonoBehaviour {
 		
 	}
 
-	protected void placeAtCoordinates(Vector2 coordinates){
+	public void placeAtCoordinates(Vector2 coordinates){
 		Vector3 coords = new Vector3(coordinates.x, coordinates.y, 0);
 		this.GetComponent<Transform>().localPosition = coords;
 	}

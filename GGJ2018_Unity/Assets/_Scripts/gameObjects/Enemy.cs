@@ -28,6 +28,13 @@ public abstract class Enemy : MoveableObject {
 //		}else if 
 	}
 
+    public void cullCheck(){
+        if (transform.localPosition.y < -6f)
+        {
+            delete();
+        }
+    }
+
 //	// Use this for initialization
 //	void Start () {
 //		

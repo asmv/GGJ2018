@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		time = 0;
+        levelDuration = 10;
 		//testCode
 		StartCoroutine("spawnEveryTen");
 	}
@@ -34,11 +35,11 @@ public class LevelManager : MonoBehaviour {
 		if(time >= levelDuration){
 			levelWin();
 		}else{
-			KeyValuePair<float, string> q = eventQueue.Peek();
-			if(q.Key >= time){
-				deserializeEvent(q.Value);
-				eventQueue.Dequeue();
-			}
+//			KeyValuePair<float, string> q = eventQueue.Peek();
+//			if(q.Key >= time){
+//				deserializeEvent(q.Value);
+//				eventQueue.Dequeue();
+//			}
 		}
 	}
 
@@ -47,7 +48,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void levelWin(){
-
+        Debug.Log("win");
 	}
 
 	public void levelFail(){
@@ -72,7 +73,7 @@ public class LevelManager : MonoBehaviour {
 		while(true){
 			List<ENEMYTYPE> elist = new List<ENEMYTYPE>{ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot};
 			spawnEnemy(instantiateFromEnumeration(elist));
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(5f);
 		}
 	}
 
@@ -91,7 +92,6 @@ public class LevelManager : MonoBehaviour {
 			//Set enemy values here
 			//
 
-			
 			//
 
 			e.gameObject.SetActive(true);

@@ -131,6 +131,11 @@ MonoBehaviour:
   bulletPrefabRoot: {fileID: 4494767127021258, guid: 81a5c0680c882407c93335683e0881e1,
     type: 2}
   isPlayerControlled: 0
+  INITSPEED: 1
+  INITHEALTH: 100
+  INITPOWER: 10
+  INITKAMIKAZEDAMAGE: 30
+  INITBULLTEFIREDELAY: 0.5
 --- !u!212 &212334745338915406
 SpriteRenderer:
   m_ObjectHideFlags: 1
