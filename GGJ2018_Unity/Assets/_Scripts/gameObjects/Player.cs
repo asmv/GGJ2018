@@ -75,6 +75,7 @@ public class Player : MonoBehaviour {
 			}
 			if(Input.GetKeyDown(KeyCode.X)){
 				if(!isTransmitting && playerTransmissionJuice > 0){
+					GameObject.Find("Game").GetComponent<SoundManager>().playTransmit();
 					isTransmitting = true;
 					GameObject enemyObj = findClosest();
 					PossessableEnemy e = enemyObj.GetComponent<PossessableEnemy>();

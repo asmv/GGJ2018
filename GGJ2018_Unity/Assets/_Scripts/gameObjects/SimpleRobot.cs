@@ -10,6 +10,8 @@ public class SimpleRobot : PossessableEnemy {
 	public int INITKAMIKAZEDAMAGE = 30;
 	public float INITBULLTEFIREDELAY = 0.5f;
 
+	public Sprite explosionSprite;
+
 	public Sprite[] sprites;
 
 	public override void enterPlayerControl(){
@@ -32,10 +34,19 @@ public class SimpleRobot : PossessableEnemy {
 
 	public override void collideProjectile(){
 		Debug.Log("BOOM, SimpleRobot Destroyed");
-		this.delete();
+		StartCoroutine("explodeAndDie");
 	}
 
 	public override void destroyMe (){
+		StartCoroutine("explodeAndDie");
+	}
+
+	IEnumerator explodeAndDie(){
+		//prevent further shot
+		this.isReloading = true;
+		this.GetComponent<SpriteRenderer>().sprite = explosionSprite;
+		GameObject.Find("Game").GetComponent<SoundManager>().playExplosion();
+		yield return new WaitForSeconds(0.3f);
 		this.delete();
 	}
 
