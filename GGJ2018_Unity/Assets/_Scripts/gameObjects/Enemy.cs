@@ -20,13 +20,13 @@ public abstract class Enemy : MoveableObject {
 
 	public bool isReloading {get; protected set;}
 
-	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log(other);
-		//TODO: need to do something here
-//		if(other.CompareTag("Bullet")){
-//
-//		}else if 
-	}
+//	void OnTriggerEnter2D(Collider2D other){
+//		Debug.Log(other);
+//		//TODO: need to do something here
+////		if(other.CompareTag("Bullet")){
+////
+////		}else if 
+//	}
 
     public void cullCheck(){
         if (transform.localPosition.y < -6f)

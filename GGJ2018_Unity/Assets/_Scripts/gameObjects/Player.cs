@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 		if(controlledEnemy!=null){
 			controlledEnemy.leavePlayerControl();
 		}
+		e.gameObject.tag = "Player";
 		this.controlledEnemy = e;
 		e.speed=e.speed*playerControlledSpeedMultiplier;
 		Debug.Log(playerControlledSpeedMultiplier);
@@ -27,14 +28,20 @@ public class Player : MonoBehaviour {
 	}
 
 	public void leaveControlledEnemy(){
+		controlledEnemy.gameObject.tag = "Enemy";
 		controlledEnemy.leavePlayerControl();
 		controlledEnemy.speed/=playerControlledSpeedMultiplier;
 		controlledEnemy.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
 	}
 
-	void OnCollisionEnter(Collider collision){
-
-	}
+//	void OnCollisionEnter(Collision collision){
+//		Debug.Log(collision.gameObject.tag);
+//		if(collision.gameObject.tag == "Bullet"){
+//			Debug.Log("PlayerHitByBullet");
+//		}else if(collision.gameObject.tag == "Enemy"){
+//			Debug.Log("PlayerHitByEnemy");
+//		}
+//	}
 
 ///Just some code in case an int id is passed in, should not be required, and doesn't work yet anyway
 //	public bool setControlledEnemy(int enemyId){

@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void levelWin(){
-        Debug.Log("LEVELWIN");
+
 	}
 
 	public void levelFail(){

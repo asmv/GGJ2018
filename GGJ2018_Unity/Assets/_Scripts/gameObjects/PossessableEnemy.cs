@@ -24,7 +24,6 @@ public abstract class PossessableEnemy : Enemy {
 	}
 
 	public virtual void basicAttack(){
-		Debug.Log("Basic Attack from Possessable Enemy");
 		if(this.isReloading == false){
 			this.isReloading = true;
 			GameObject BulletGO = Instantiate(bulletPrefabRoot.Find(BULLETTYPE.simplebullet.ToString()).gameObject);
@@ -44,9 +43,21 @@ public abstract class PossessableEnemy : Enemy {
 	}
 
 	IEnumerator reload(){
-		Debug.Log("In reload.");
 		yield return new WaitForSeconds(bulletFireDelay);
 		this.isReloading = false;
+	}
+
+	void OnTriggerEnter2D(Collider2D collision){
+		Debug.Log("Trigger Collision Registered");
+		if(this.isPlayerControlled){
+			Debug.Log("player-Controlled enemy collision: " + collision.gameObject.tag);
+			if(collision.gameObject.tag == "Bullet"){
+				Debug.Log("PlayerHitByBullet");
+			}
+			if(collision.gameObject.tag == "Enemy"){
+				Debug.Log("PlayerHitByEnemy");
+			}
+		}
 	}
 
 //	// Use this for initialization
