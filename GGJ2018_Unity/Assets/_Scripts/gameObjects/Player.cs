@@ -6,6 +6,9 @@ public class Player : MonoBehaviour {
 
 	PossessableEnemy controlledEnemy;
 
+	public int INITPLAYERHEALTH = 100;
+	public int INITPLAYERTRANSMISSIONJUICE = 100;
+
 	public int playerHealth;
 	public int playerTransmissionJuice;
 
@@ -56,8 +59,9 @@ public class Player : MonoBehaviour {
 //	}
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		this.playerHealth = INITPLAYERHEALTH;
+		this.playerTransmissionJuice = INITPLAYERTRANSMISSIONJUICE;
 	}
 	
 	// Update is called once per frame

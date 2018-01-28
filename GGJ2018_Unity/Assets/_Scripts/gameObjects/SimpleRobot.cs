@@ -29,11 +29,12 @@ public class SimpleRobot : PossessableEnemy {
 	}
 
 	public override void collideProjectile(){
-		throw new System.NotImplementedException ();
+		Debug.Log("BOOM, SimpleRobot Destroyed");
+		this.delete();
 	}
 
 	public override void destroyMe (){
-		throw new System.NotImplementedException ();
+		this.delete();
 	}
 
 	public override void move (Vector3 movementVector){

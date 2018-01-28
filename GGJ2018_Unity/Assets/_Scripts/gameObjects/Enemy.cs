@@ -12,7 +12,9 @@ public abstract class Enemy : MoveableObject {
 	public int kamikazeDamage {get; protected set;}
 	public float bulletFireDelay {get; protected set;}
 
-	public abstract void collideProjectile();
+	public virtual void collideProjectile(){
+		destroyMe();
+	}
 	public virtual void collidePlayer(){
 		destroyMe();
 	}

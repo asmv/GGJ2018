@@ -7,7 +7,7 @@ public abstract class Projectile : MoveableObject {
 	public bool isShotByPlayer {get; set;}
 	public float speed {get; protected set;}
 	public float acceleration {get; protected set;}
-	public float damage {get; protected set;}
+	public int damage {get; protected set;}
 
 	public Vector2 moveDirection {get; protected set;}
 
