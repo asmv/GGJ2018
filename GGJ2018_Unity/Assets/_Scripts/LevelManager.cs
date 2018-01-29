@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour {
 		player.transform.SetParent(InitialPlayerGO.transform);
 		Player playerScript = player.gameObject.GetComponent<Player>();
 		playerScript.setControlledEnemy(pEnemy);
+
 	}
 	
 	// Update is called once per frame
@@ -80,11 +81,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	IEnumerator spawnEveryTen(){
-		while(true){
-			List<ENEMYTYPE> elist = new List<ENEMYTYPE>{ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot};
-			spawnEnemy(instantiateFromEnumeration(elist));
-			yield return new WaitForSeconds(5f);
-		}
+        List<Event> level = LevelLoader.getEvents();
+        foreach (Event eve in level)
+        {
+            yield return new WaitForSeconds(eve.delay);
+            List<ENEMYTYPE> elist = new List<ENEMYTYPE>{ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot, ENEMYTYPE.simplerobot};
+            spawnEnemy(instantiateFromEnumeration(elist));
+        }
 	}
 
 	public void spawnEnemy(List<Enemy> enemyArr){

@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "delay": 3,
+      "enemy": 1,
+      "forma": 1
+    },
+    {
+      "delay": 5,
+      "enemy": 1,
+      "forma": 1
+    }
+	{
+      "delay": 1,
+      "enemy": 1,
+      "forma": 1
+    }
+	{
+      "delay": 1,
+      "enemy": 1,
+      "forma": 1
+    }
+	{
+      "delay": 1,
+      "enemy": 1,
+      "forma": 1
+    }
+	{
+      "delay": 1,
+      "enemy": 1,
+      "forma": 1
+    }
+  ]
+}
