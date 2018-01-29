@@ -39,7 +39,11 @@ public class LevelManager : MonoBehaviour {
 		player.transform.SetParent(InitialPlayerGO.transform);
 		Player playerScript = player.gameObject.GetComponent<Player>();
 		playerScript.setControlledEnemy(pEnemy);
+<<<<<<< HEAD
+
+=======
 		playerScript.playerHealth = 100; //FIXME: Hardcoded value
+>>>>>>> 9522781fc121af7d2f626c4fd701a79b491ce577
 	}
 	
 	// Update is called once per frame

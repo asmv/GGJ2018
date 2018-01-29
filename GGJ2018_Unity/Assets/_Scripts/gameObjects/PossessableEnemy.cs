@@ -8,7 +8,7 @@ public abstract class PossessableEnemy : Enemy {
 	public bool isPlayerControlled = false;
 
 	public bool isInvincible = false;
-	public static int INVINCIBILLITYSECONDS = 1;
+	public static float INVINCIBILLITYSECONDS = 0.3f;
 
 	public virtual void enterPlayerControl(){
 		this.isPlayerControlled = true;
@@ -33,6 +33,7 @@ public abstract class PossessableEnemy : Enemy {
 			Bullet b = BulletGO.GetComponent<Bullet>();
 			b.placeAtCoordinates(this.transform.localPosition);
 			if(this.isPlayerControlled){
+				GameObject.Find("Game").GetComponent<SoundManager>().playShot();
 				b.isShotByPlayer = true;
 				b.setMovementDirection(Vector2.up);
 				//fire bullet up
@@ -57,18 +58,27 @@ public abstract class PossessableEnemy : Enemy {
 				Debug.Log("player-Controlled enemy collision: " + collision.gameObject.tag);
 				GameObject PlayerGO = GameObject.Find("Player");
 				if(collision.gameObject.tag == "Bullet"){
-					Debug.Log("PlayerHitByBullet");
-					PlayerGO.GetComponent<Player>().playerHealth-=collision.gameObject.GetComponent<Projectile>().damage;
+					if(!collision.gameObject.gameObject.GetComponent<Projectile>().isShotByPlayer){
+						Debug.Log("PlayerHitByBullet");
+						PlayerGO.GetComponent<Player>().playerHealth-=collision.gameObject.GetComponent<Projectile>().damage;
+						GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
+						this.isInvincible = true;
+						StartCoroutine("invincibilityFrames");
+						PlayerGO.GetComponent<Player>().wasHit();
+					}
+
 				}
-				if(collision.gameObject.tag == "Enemy"){
+				else if(collision.gameObject.tag == "Enemy"){
 					Debug.Log("PlayerHitByEnemy");
 					Enemy hitEnemy = collision.gameObject.GetComponent<Enemy>();
 					PlayerGO.GetComponent<Player>().playerHealth-=hitEnemy.kamikazeDamage;
 					hitEnemy.collidePlayer();
+					GameObject.Find("Game").GetComponent<SoundManager>().playDamaged();
+					this.isInvincible = true;
+					StartCoroutine("invincibilityFrames");
+					PlayerGO.GetComponent<Player>().wasHit();
 				}
-				Debug.Log("PlayerHealth: " + PlayerGO.GetComponent<Player>().playerHealth);
-				this.isInvincible = true;
-				StartCoroutine("invincibilityFrames");
+
 			}
 		}else{
 			if(collision.gameObject.tag == "Bullet" && collision.gameObject.GetComponent<Projectile>().isShotByPlayer){
@@ -79,9 +89,19 @@ public abstract class PossessableEnemy : Enemy {
 	}
 
 	IEnumerator invincibilityFrames(){
-		yield return new WaitForSeconds(INVINCIBILLITYSECONDS);
+		var renderer = this.GetComponent<SpriteRenderer>();
+		for(var n = 0; n < 5; n++){
+		     renderer.enabled = true;
+		     yield return new WaitForSeconds(INVINCIBILLITYSECONDS/10);
+		     renderer.enabled = false;
+		     yield return new WaitForSeconds(INVINCIBILLITYSECONDS/10);
+		}
+		renderer.enabled = true;
+
+		//yield return new WaitForSeconds(INVINCIBILLITYSECONDS);
 		this.isInvincible = false;
 	}
+
 
 //	// Use this for initialization
 //	void Start () {
